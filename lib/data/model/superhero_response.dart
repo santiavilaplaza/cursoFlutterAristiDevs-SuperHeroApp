@@ -7,7 +7,7 @@ class SuperheroResponse {
   SuperheroResponse({required this.response, required this.result});
 
   factory SuperheroResponse.fromJson(Map<String, dynamic> json) {
-    var list = json["results"] as List;
+    var list = (json["results"] as List?) ?? [];
     List<SuperheroDetailResponse> heroList =
         list.map((hero) => SuperheroDetailResponse.fromJson(hero)).toList();
 

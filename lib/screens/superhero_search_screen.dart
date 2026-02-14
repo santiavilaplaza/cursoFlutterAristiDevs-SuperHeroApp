@@ -56,6 +56,9 @@ class _SuperheroSearchScreenState extends State<SuperheroSearchScreen> {
         } else if (snapshot.hasError) {
           return Text("Error: ${snapshot.error}");
         } else if (snapshot.hasData) {
+          if (snapshot.data!.result.isEmpty == true) {
+            return Text("No hay resultados");
+          } 
           var superheroList = snapshot.data?.result;
           return Expanded(
             child: ListView.builder(
@@ -82,8 +85,7 @@ class _SuperheroSearchScreenState extends State<SuperheroSearchScreen> {
       onTap: () => Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => 
-          SuperheroDetailScreen(superhero: item)
+          builder: (context) => SuperheroDetailScreen(superhero: item),
         ),
       ),
       child: Container(
